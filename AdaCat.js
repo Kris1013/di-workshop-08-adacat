@@ -5,6 +5,7 @@ class AdaCat {
     this.hunger = 5
     this.isSleeping = false
     this.size = 30
+    this.tiredness = 0
   }
 
   setHunger(newHunger) {
@@ -30,7 +31,8 @@ class AdaCat {
 
       'they weigh ' + this.size + ' tonnes.',
       'their health is ' + this.getHealth() + '/30.',
-      sleepLine
+      sleepLine,
+      'their tiredness is ' + this.tiredness
     ]
 
     return lines.join('\n')
@@ -44,10 +46,16 @@ class AdaCat {
     }
 
     this.setHunger(hunger)
+    
+    if (this.tiredness < 15) {
+      this.tiredness = this.tiredness+1
+    }
   }
 
   nap() {
     this.isSleeping = true
+
+    this.tiredness = 0
   }
 
   wakeUp() {
@@ -60,6 +68,13 @@ class AdaCat {
       this.size = this.size - 1
     }
     this.setHunger(hunger)
+
+    var diff = 15 - this.tiredness
+    if (diff >= 3) {
+      this.tiredness = this.tiredness + 3
+    } else {
+      this.tiredness = this.tiredness + diff
+    }
   }
 
   getHealth() {

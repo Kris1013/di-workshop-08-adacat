@@ -24,6 +24,11 @@ describe('AdaCat', function() {
       var myCat = new AdaCat('greg', 'alex')
       expect(myCat.hunger).to.equal(5)
     })
+  
+    it('sets the tiredness attribute to 0', function() {
+      var myCat = new AdaCat('buttons', 'alex')
+      expect(myCat.tiredness).to.equal(0)
+    })
 
     it('sets the isSleeping attribute to false', function() {
       var myCat = new AdaCat('denim', 'alex')
@@ -101,6 +106,12 @@ describe('AdaCat', function() {
       myCat.feed()
       expect(myCat.size).to.equal(31)
     })
+
+    it('increases tiredness when fed', function() {
+      var myCat = new AdaCat('pencil', 'alex')
+      myCat.feed()
+      expect(myCat.tiredness).to.equal(1)
+    })    
   })
 
   describe('#nap', function() {
@@ -108,6 +119,12 @@ describe('AdaCat', function() {
       var myCat = new AdaCat('apple', 'alex')
       myCat.nap()
       expect(myCat.isSleeping).to.equal(true)
+    })
+
+    it('Resets tiredness to 0', function() {
+      var myCat = new AdaCat('pencil', 'alex')
+      myCat.nap()
+      expect(myCat.tiredness).to.equal(0)
     })
   })
 
@@ -139,6 +156,12 @@ describe('AdaCat', function() {
       myCat.hunger = 8
       myCat.play()
       expect(myCat.size).to.equal(29)
+    })
+
+    it('increases tiredness by 3', function() {
+      var myCat = new AdaCat('pencil', 'alex')
+      myCat.play()
+      expect(myCat.tiredness).to.equal(3)
     })
   })
 
