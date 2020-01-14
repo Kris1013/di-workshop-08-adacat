@@ -6,6 +6,7 @@ class AdaCat {
     this.isSleeping = false
     this.size = 30
     this.tiredness = 0
+    this.message = " "
   }
 
   setHunger(newHunger) {
@@ -25,6 +26,10 @@ class AdaCat {
     } else {
       sleepLine = this.name + ' is awake.'
     }
+    var deathLine
+    if (this.getHealth() == 0) {
+      deathLine = 'CAT IS DEAD YOU HEATHEN'
+    }
     var lines = [
       this.name + ' is a cat. they belong to ' + this.owner + '.',
       'their hunger level is ' + this.hunger + '/10.',
@@ -32,7 +37,9 @@ class AdaCat {
       'they weigh ' + this.size + ' tonnes.',
       'their health is ' + this.getHealth() + '/30.',
       sleepLine,
-      'their tiredness is ' + this.tiredness
+      'their tiredness is ' + this.tiredness,
+      this.message,
+      deathLine
     ]
 
     return lines.join('\n')
@@ -50,6 +57,8 @@ class AdaCat {
     if (this.tiredness < 15) {
       this.tiredness = this.tiredness+1
     }
+
+    this.message = "the cat is eating"
   }
 
   nap() {
@@ -75,6 +84,8 @@ class AdaCat {
     } else {
       this.tiredness = this.tiredness + diff
     }
+
+    this.message = "the cat is playing"
   }
 
   getHealth() {

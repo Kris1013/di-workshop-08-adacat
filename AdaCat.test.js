@@ -39,6 +39,9 @@ describe('AdaCat', function() {
       var myCat = new AdaCat('toyota', 'alex')
       expect(myCat.size).to.equal(30)
     })
+    it('sets emtpy message attribute', function() {
+      var myCat = new AdaCat('toyota', 'alex')
+      expect(myCat.message).to.equal(' ')
   })
 
   describe('#getDescription', function() {
@@ -84,6 +87,15 @@ describe('AdaCat', function() {
       var lines = result.split('\n')
       expect(lines[3]).to.equal('their health is 25/30.')
     })
+
+    it ('cat is dead', function(){
+      var myCat = new AdaCat('gawd', 'nyr')
+      myCat.size = 1
+      myCat.hunger = 3
+      var result = myCat.getDescription()
+      var lines = result.split('\n')
+      expect(lines[7]).to.equal('CAT IS DEAD YOU HEATHEN')
+    })
   })
 
   describe('#feed', function() {
@@ -111,7 +123,13 @@ describe('AdaCat', function() {
       var myCat = new AdaCat('pencil', 'alex')
       myCat.feed()
       expect(myCat.tiredness).to.equal(1)
-    })    
+    }) 
+    
+    it('sets message attribute to eating', function() {
+      var myCat = new AdaCat('toyota', 'alex')
+      myCat.feed()
+      expect(myCat.message).to.equal('the cat is eating')
+  })
   })
 
   describe('#nap', function() {
@@ -163,6 +181,12 @@ describe('AdaCat', function() {
       myCat.play()
       expect(myCat.tiredness).to.equal(3)
     })
+
+    it('sets message attribute to playing', function() {
+      var myCat = new AdaCat('toyota', 'alex')
+      myCat.play()
+      expect(myCat.message).to.equal('the cat is playing')
+  })
   })
 
   describe('#getHealth', function() {
@@ -261,5 +285,7 @@ describe('AdaCat', function() {
       var result = myCat.getHealth()
       expect(result).to.equal(0)
     })
+
   })
+})
 })
